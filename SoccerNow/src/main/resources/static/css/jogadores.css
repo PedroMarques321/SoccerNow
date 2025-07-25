@@ -1,0 +1,134 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #e0eafc;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  background: #fff;
+  margin: 40px auto;
+  padding: 32px 24px;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px #0002;
+  max-width: 900px;
+}
+
+h2 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 28px;
+}
+
+/* Filtros */
+.filter-form {
+  margin-bottom: 24px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-form input[type="text"] {
+  padding: 10px 12px;
+  border: 1px solid #b5c6d6;
+  border-radius: 4px;
+  font-size: 1rem;
+  background: #f8fafc;
+  color: #2c3e50;
+  transition: border 0.2s;
+}
+
+.filter-form input[type="text"]:focus {
+  border-color: #3498db;
+  outline: none;
+}
+
+.filter-form button[type="submit"] {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 18px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.filter-form button[type="submit"]:hover {
+  background: #217dbb;
+  transform: scale(1.04);
+}
+
+.filter-form a {
+  background: #e0eafc;
+  color: #217dbb;
+  border-radius: 4px;
+  padding: 9px 16px;
+  text-decoration: none;
+  font-weight: bold;
+  border: 1px solid #b5c6d6;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 0;
+  display: unset;
+  height: 40px;
+  line-height: 22px;
+  box-sizing: border-box;
+}
+
+.filter-form a:hover {
+  background: #3498db;
+  color: #fff;
+}
+
+/* Tabela */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 24px;
+  background: #f8fafc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+th, td {
+  padding: 14px 12px;
+  text-align: left;
+}
+
+th {
+  background: #3498db;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #217dbb;
+}
+
+tr:nth-child(even) {
+  background: #eaf3fb;
+}
+
+tr:hover {
+  background: #d0e6fa;
+  transition: background 0.2s;
+}
+
+td {
+  color: #2c3e50;
+}
+
+a {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  background: #3498db;
+  color: #fff;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+a:hover {
+  background: #217dbb;
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Árbitros</title>
+  <link rel="stylesheet" th:href="@{/css/arbitros.css}">
+</head>
+<body>
+  <div class="container">
+    <h2>Lista de Árbitros</h2>
+    <form method="get" th:action="@{/arbitros}" class="filter-form">
+        <input type="text" name="nome" placeholder="Filtrar por nome" th:value="${param.nome}">
+        <input type="number" name="numJogos" placeholder="Filtrar por nº jogos" th:value="${param.numJogos}">
+        <button type="submit">Filtrar</button>
+        <a th:href="@{/arbitros}">Limpar Filtros</a>
+    </form>
+    <table id="tabelaArbitros">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Certificado</th>
+          <th>Nº Jogos Oficiados</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="arb : ${arbitros}">
+            <td th:text="${arb.username}">Nome</td>
+            <td th:text="${arb.email}">Email</td>
+            <td th:text="${arb.certificado ? 'Sim' : 'Não'}">Certificado</td>
+            <td th:text="${numJogosPorArbitro[arb.id]}">0</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(arbitros)}">
+            <td colspan="4" style="text-align:center;">Nenhum árbitro encontrado.</td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/menu}">Voltar ao menu</a>
+  </div>
+</body>
+</html>

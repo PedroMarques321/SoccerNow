@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Jogadores</title>
+  <link rel="stylesheet" th:href="@{/css/jogadores.css}">
+</head>
+<body>
+  <div class="container">
+    <h2>Lista de Jogadores</h2>
+        <form method="get" th:action="@{/jogadores}" class="filter-form">
+            <input type="text" name="nome" placeholder="Filtrar por nome" th:value="${param.nome}">
+            <input type="text" name="posicao" placeholder="Filtrar por posição" th:value="${param.posicao}">
+            <button type="submit">Filtrar</button>
+            <a th:href="@{/jogadores}">Limpar Filtros</a>
+        </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Posição</th>
+          <th>Número da Camisa</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="jogador : ${jogadores}">
+          <td th:text="${jogador.username}">Nome</td>
+          <td th:text="${jogador.email}">Email</td>
+          <td th:text="${jogador.posicao}">Posição</td>
+          <td th:text="${jogador.numeroCamisa}">Número da Camisa</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(jogadores)}">
+          <td colspan="4" style="text-align:center;">Nenhum jogador encontrado.</td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/menu}">Voltar ao menu</a>
+  </div>
+</body>
+</html>

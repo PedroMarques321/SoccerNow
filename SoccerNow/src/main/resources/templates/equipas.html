@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Equipas</title>
+  <link rel="stylesheet" th:href="@{/css/equipas.css}">
+</head>
+<body>
+  <div class="container">
+    <h2>Lista de Equipas</h2>
+    <form method="get" th:action="@{/equipas}" class="filter-form">
+      <input type="text" name="nome" placeholder="Filtrar por nome" th:value="${param.nome}">
+      <input type="number" min="0" name="numJogadores" placeholder="Filtrar por nº jogadores" th:value="${param.numJogadores}">
+      <input type="text" name="conquistas" placeholder="Filtrar por conquistas" th:value="${param.conquistas}">
+      <input type="text" name="ausenciaPosicao" placeholder="Sem jogadores na posição..." th:value="${param.ausenciaPosicao}">
+      <button type="submit">Filtrar</button>
+      <a th:href="@{/equipas}">Limpar Filtros</a>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Cidade</th>
+          <th>Histórico de Jogos</th>
+          <th>Conquistas</th>
+          <th>Nº Jogadores</th>
+          <th>Jogadores</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="equipa : ${equipas}">
+          <td th:text="${equipa.nome}">Nome</td>
+          <td th:text="${equipa.cidade}">Cidade</td>
+          <td th:text="${equipa.historicoJogos}">Histórico</td>
+          <td th:text="${equipa.conquistas}">Conquistas</td>
+          <td th:text="${equipa.jogadores != null ? #lists.size(equipa.jogadores) : 0}">Nº Jogadores</td>
+          <td>
+            <span th:if="${equipa.jogadores != null}">
+                <span th:each="jog, iterStat : ${equipa.jogadores}">
+                <span th:text="${jog.username + '(' + jog.posicao + ')'}"></span><span th:if="${!iterStat.last}">, </span>
+              </span>
+            </span>
+          </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(equipas)}">
+          <td colspan="6" style="text-align:center;">Nenhuma equipa encontrada.</td>
+        </tr>
+      </tbody>
+    </table>
+    <a th:href="@{/menu}">Voltar ao menu</a>
+  </div>
+</body>
+</html>

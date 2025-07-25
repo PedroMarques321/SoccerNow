@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Jogos</title>
+    <link rel="stylesheet" th:href="@{/css/jogos.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Lista de Jogos</h2>
+    <form method="get" th:action="@{/jogos}" class="filter-form">
+        <label>
+            Estado:
+            <select name="estado">
+                <option value="">Todos</option>
+                <option value="FINALIZADO" th:selected="${param.estado == 'FINALIZADO'}">Realizados</option>
+                <option value="A_REALIZAR" th:selected="${param.estado == 'A_REALIZAR'}">A realizar</option>
+            </select>
+        </label>
+        <label>
+            Mín. golos casa:
+            <input type="number" name="minGolosCasa" th:value="${param.minGolosCasa}" class="input-curto">
+        </label>
+        <label>
+            Máx. golos casa:
+            <input type="number" name="maxGolosCasa" th:value="${param.maxGolosCasa}" class="input-curto">
+        </label>
+        <label>
+            Mín. golos fora:
+            <input type="number" name="minGolosFora" th:value="${param.minGolosFora}" class="input-curto">
+        </label>
+        <label>
+            Máx. golos fora:
+            <input type="number" name="maxGolosFora" th:value="${param.maxGolosFora}" class="input-curto">
+        </label>
+        <label>
+            Localização:
+            <input type="text" name="localizacao" th:value="${param.localizacao}">
+        </label>
+        <label>
+            Turno:
+            <select name="turno">
+                <option value="">Todos</option>
+                <option value="MANHA" th:selected="${param.turno == 'MANHA'}">Manhã</option>
+                <option value="TARDE" th:selected="${param.turno == 'TARDE'}">Tarde</option>
+                <option value="NOITE" th:selected="${param.turno == 'NOITE'}">Noite</option>
+            </select>
+        </label>
+        <button type="submit">Filtrar</button>
+        <a th:href="@{/jogos}">Limpar Filtros</a>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Equipa Casa</th>
+            <th>Equipa Fora</th>
+            <th>Golos Casa</th>
+            <th>Golos Fora</th>
+            <th>Estado</th>
+            <th>Localização</th>
+            <th>Turno</th>
+            <th>Data</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="jogo : ${jogos}">
+            <td th:text="${nomesEquipas[jogo.equipaCasaId]}">Casa</td>
+            <td th:text="${nomesEquipas[jogo.equipaVisitanteId]}">Fora</td>
+            <td th:text="${jogo.golosCasa}">0</td>
+            <td th:text="${jogo.golosFora}">0</td>
+            <td th:text="${jogo.estado}">Estado</td>
+            <td th:text="${jogo.local}">Localização</td>
+            <td th:text="${turnosJogos[jogo.id]}">Turno</td>
+            <td th:text="${jogo.dataHora}">Data</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(jogos)}">
+            <td colspan="8" style="text-align:center;">Nenhum jogo encontrado.</td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/menu}">Voltar ao menu</a>
+</div>
+</body>
+</html>

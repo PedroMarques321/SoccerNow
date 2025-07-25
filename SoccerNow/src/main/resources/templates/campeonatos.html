@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Campeonatos</title>
+    <link rel="stylesheet" th:href="@{/css/campeonatos.css}">
+</head>
+<body>
+<div class="container">
+    <h2>Lista de Campeonatos</h2>
+    <form method="get" th:action="@{/campeonatos}" class="filter-form">
+        <label>
+            Nome:
+            <input type="text" name="nome" th:value="${param.nome}">
+        </label>
+        <label>
+            Equipa:
+            <select name="equipaId">
+                <option value="">Todas</option>
+                <option th:each="equipa : ${equipas}"
+                        th:value="${equipa.id}"
+                        th:text="${equipa.nome}"
+                        th:selected="${param.equipaId == equipa.id}"></option>
+            </select>
+        </label>
+        <label>
+            Nº jogos realizados:
+            <input type="number" name="numJogosRealizados" th:value="${param.numJogosRealizados}" class="input-curto">
+        </label>
+        <label>
+            Nº jogos a realizar:
+            <input type="number" name="numJogosARealizar" th:value="${param.numJogosARealizar}" class="input-curto">
+        </label>
+        <button type="submit">Filtrar</button>
+        <a th:href="@{/campeonatos}">Limpar Filtros</a>
+    </form>
+    <table>
+        <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Modalidade</th>
+            <th>Nº Jogos Realizados</th>
+            <th>Nº Jogos a Realizar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="camp : ${campeonatos}">
+            <td th:text="${camp.nome}">Nome</td>
+            <td th:text="${camp.dataInicio}">Data Início</td>
+            <td th:text="${camp.dataFim}">Data Fim</td>
+            <td th:text="${camp.modalidade}">Modalidade</td>
+            <td th:text="${camp.numJogosRealizados}">0</td>
+            <td th:text="${camp.numJogosARealizar}">0</td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(campeonatos)}">
+            <td colspan="6" style="text-align:center;">Nenhum campeonato encontrado.</td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:href="@{/menu}">Voltar ao menu</a>
+</div>
+</body>
+</html>

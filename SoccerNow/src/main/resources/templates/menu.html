@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>SoccerNow - Menu</title>
+  <link rel="stylesheet" th:href="@{/css/menu.css}">
+</head>
+<body>
+  <div class="menu-box">
+    <h2>Bem-vindo, <span th:text="${user}">Utilizador</span>!</h2>
+    <ul>
+      <li><button th:onclick="|location.href='@{/jogadores}'|">Buscar Jogadores</button></li>
+      <li><button th:onclick="|location.href='@{/equipas}'|">Buscar Equipas</button></li>
+      <li><button th:onclick="|location.href='@{/campeonatos}'|">Buscar Campeonatos</button></li>
+      <li><button th:onclick="|location.href='@{/arbitros}'|">Buscar Árbitros</button></li>
+      <li><button th:onclick="|location.href='@{/jogos}'|">Buscar Jogos</button></li>
+      <li><button class="logout-btn" th:onclick="|location.href='@{/logout}'|">Logout</button></li>
+    </ul>
+  </div>
+</body>
+</html>
