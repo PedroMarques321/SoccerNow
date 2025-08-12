@@ -100,6 +100,6 @@ Deve no terminal fazer logout do docker `docker logout` e refazer o login `docke
 
 # How to run
 
-Open a terminal in the folder /SoccerNow and run the command "docker compose up --build", the app will launche and you can access it via "http://localhost:8080/".
-To run JavaFX app open a terminal in the folder /SoccerNow-JavaFX and run the command "mvn javafx:run"
+- Open a terminal in the folder /SoccerNow and run the command "docker compose up --build", the app will launche and you can access it via "http://localhost:8080/".
+- To run JavaFX app open a terminal in the folder /SoccerNow-JavaFX and run the command "mvn javafx:run"
 
